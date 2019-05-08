@@ -13,33 +13,10 @@ export default {
   data: () => ({
     searchText: ''
   }),
-  methods: {
-    sorting () {
-      if (this.searchText === '') {
-        this.$store.commit('updateFilteredUsers', this.usersList)
-      } else {
-        let filteredUsers = this.usersList.filter((user) => {
-          return `${ user.name } ${ user.secondName }`.toLowerCase().indexOf(this.searchText.toLowerCase()) !== -1
-        })
-        this.$store.commit('updateFilteredUsers', filteredUsers)
-      }
-    }
-  },
-  mounted () {
-    this.sorting()
-  },
-  computed: {
-    usersList () {
-      return [...this.$store.state.usersList]
-    }
-  },
   watch: {
-    searchText () {
-      this.sorting()
+    searchText (newSearchText) {
+      this.$store.commit('updateSearchText', newSearchText)
     },
-    usersList () {
-      this.sorting()
-    }
   }
 }
 </script>

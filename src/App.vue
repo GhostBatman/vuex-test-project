@@ -33,7 +33,7 @@ export default {
   },
   computed: {
     filteredUsers () {
-      return this.$store.state.filteredUsers
+      return this.$store.getters.filteredUsers
     },
     searchText () {
       return this.$store.state.searchText

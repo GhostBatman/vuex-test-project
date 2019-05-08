@@ -23,7 +23,6 @@ export default {
 
   methods: {
     sorting () {
-
       let sortedUsers = this.usersList.sort((userA, userB) => {
         if (this.orderBy === 'asc') {
           return userA[this.sortBy] > userB[this.sortBy] ? 1 : -1

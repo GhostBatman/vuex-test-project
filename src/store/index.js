@@ -7,15 +7,23 @@ export const store = () => new Vuex.Store({
 
   state: {
     usersList: [],
-    filteredUsers: []
+    searchText: ''
   },
-  getters: {},
+  getters: {
+    filteredUsers: state => {
+      if (typeof state.searchText[0] !== 'undefined') {
+        return [...state.usersList].filter((user) => {
+          return `${ user.name } ${ user.secondName }`.toLowerCase().indexOf(state.searchText.toLowerCase()) !== -1
+        })
+      } else return state.usersList
+    },
+  },
   mutations: {
     updateUsers (state, payload) {
       state.usersList = payload
     },
-    updateFilteredUsers (state, payload) {
-      state.filteredUsers = payload
+    updateSearchText (state, payload) {
+      state.searchText = payload
     },
   },
   actions: {},
